@@ -1,13 +1,17 @@
 /* Name: Paul Helske
  * Date: 07/20/23
  */
-package f;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Exercise08_37 {
+
+	static String state;
+	static String capital;
+	static int correctCount = 0;
 	public static void main(String[] args) { 
 		String[][] stateCapital = {
 				{"Alabama", "Montgomery"},
@@ -61,41 +65,27 @@ public class Exercise08_37 {
 				{"Wisconsin", "Madison"},
 				{"Wyoming", "Cheyenne"}
 		};
-		String state;
-		String capital;
 
 		Map<String, String> stateMap = new HashMap<>();
 		for (int i = 0; i < 50; i++) {
-			state = stateCapital[i][0].toString();
+			state = stateCapital[i][0].toString().trim().toLowerCase();
 			capital = stateCapital[i][1].toString();
 
 			stateMap.put(state, capital);
-
 		}
-
 
 		Scanner input = new Scanner(System.in);
 
-		int correctCount = 0;
-
-		for (Map.Entry<String, String> entry : stateMap.entrySet()) {
-			state = entry.getKey();
-			capital = entry.getValue();
-
-			for (int i = 0; i < stateCapital.length; i++) {
-				// Prompt the user with a question
-				System.out.print("What is the capital of " + state + "? ");
-				String capitalAnswer = input.nextLine().trim().toLowerCase();
-
-				if (capitalAnswer.toLowerCase().equals(state.toLowerCase())) {
-					System.out.println("Your answer is correct");
-					correctCount++;
-				}
-				else
-					System.out.println("The correct answer should be " + capital);
+		stateMap.forEach((state, capital) -> {
+			System.out.println("Please enter the name of the state: ");
+			String answer = stateMap.get(input.nextLine().trim().toLowerCase());
+			while (answer == null) {
+				System.out.println("I'm sorry, that state was not recognized");
+				System.out.println("Please enter the name of the state: ");
+				answer = stateMap.get(input.nextLine().trim().toLowerCase());
 			}
-
-			System.out.println("The correct count is " + correctCount);
-		}
+				System.out.println(answer);
+		});
+		System.out.println("The correct count is " + correctCount);
 	}
 }
