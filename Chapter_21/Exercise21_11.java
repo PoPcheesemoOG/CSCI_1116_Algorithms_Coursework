@@ -103,13 +103,13 @@ public class Exercise21_11 extends Application {
 					if (mapForBoy[mapId].get(tfName.getText()) == null)
 						result.setText("Name not in list, please try again");
 					else
-						result.setText("# " + mapForBoy[mapId].get(tfName.getText()));				
+						result.setText("Boy name " + tfName.getText() + " is ranked # " + mapForBoy[mapId].get(tfName.getText()) + " In the year " + cboYear.getValue());				
 				}
 				if (cboGender.getValue() == "Female") {
 					if (mapForGirl[mapId].get(tfName.getText()) == null)
 						result.setText("Name not in list, please try again");
 					else					
-						result.setText("# " + mapForGirl[mapId].get(tfName.getText()));					
+						result.setText("Girl name " + tfName.getText() + " is ranked # " + mapForGirl[mapId].get(tfName.getText()) + " In the year " + cboYear.getValue());						
 				}
 			}
 			catch (NullPointerException ex) {
