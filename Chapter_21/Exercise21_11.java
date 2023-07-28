@@ -1,9 +1,16 @@
+/* Name: Paul Helske
+ * Date: 07/27/23
+ */
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import javafx.scene.text.Text;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,13 +30,11 @@ public class Exercise21_11 extends Application {
 	private String girlName;
 	private Integer rank;
 
-
-
-
 	private Button btFindRanking = new Button("Find Ranking");
 	private ComboBox<Integer> cboYear = new ComboBox<>();
 	private ComboBox<String> cboGender = new ComboBox<>();
 	private TextField tfName = new TextField();
+	private Text result = new Text();
 	private Label lblResult = new Label();
 
 	@Override // Override the start method in the Application class
@@ -42,6 +47,7 @@ public class Exercise21_11 extends Application {
 		gridPane.add(cboGender, 1, 1);
 		gridPane.add(tfName, 1, 2);
 		gridPane.add(btFindRanking, 1, 3);
+		gridPane.add(result, 1, 4);
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setHgap(5);
 		gridPane.setVgap(5);
@@ -89,32 +95,27 @@ public class Exercise21_11 extends Application {
 
 		cboGender.getItems().addAll("Male", "Female");
 		cboGender.setValue("Male");
-		
-		
 
 		btFindRanking.setOnAction(e -> {
 			try {
 				int mapId = (cboYear.getValue() - 2001);
 				if (cboGender.getValue() == "Male") {
 					if (mapForBoy[mapId].get(tfName.getText()) == null)
-						System.out.println("Name not in list, please try again");
+						result.setText("Name not in list, please try again");
 					else
-				System.out.println(mapForBoy[mapId].get(tfName.getText()));				
+						result.setText("# " + mapForBoy[mapId].get(tfName.getText()));				
 				}
 				if (cboGender.getValue() == "Female") {
 					if (mapForGirl[mapId].get(tfName.getText()) == null)
-						System.out.println("Name not in list, please try again");
+						result.setText("Name not in list, please try again");
 					else					
-					System.out.println(mapForGirl[mapId].get(tfName.getText()));					
+						result.setText("# " + mapForGirl[mapId].get(tfName.getText()));					
 				}
 			}
 			catch (NullPointerException ex) {
 				System.out.println("Name not in list, please try again");
 			}
 		});
-
-
-
 	}
 
 	/**
