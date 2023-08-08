@@ -7,35 +7,32 @@ import java.util.Scanner;
 public class Ex22_1 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		
-		StringBuilder subString = new StringBuilder();
-		
-		String arg1;
-		String arg2;
-		String arg3 = "";
-		String arg4;
-		Character char1;
-		Character char2;
-		
+
+		String longestSubstring = "";
+		String currentSubstring =  "";
+		String initialString = "";
+
+		Character lastChar;
+		Character currentChar;
+
 		System.out.println("Please enter a String of characters to process: ");
-		arg1 = input.next();
-		arg2 = arg1;
-		for (int i = 0; i < arg1.length(); i++) {
-			char1 = arg1.charAt(i);
-			if (i < arg1.length()) {
-			char2 = arg1.charAt(i + 1);
+		initialString = input.next();
+
+		for (int i = 1; i < initialString.length(); i++) {
+			lastChar = initialString.charAt(i - 1);
+			currentChar = initialString.charAt(i);
+
+			if (currentChar > lastChar) {
+				currentSubstring += "" + lastChar;
 			}
-			else {
-				return;
+			else if (currentChar <= lastChar) {
+				if (currentSubstring.length() > longestSubstring.length()) {
+					longestSubstring = currentSubstring;
+					currentSubstring = "";
+					System.out.println("setting new substring");
+				}
 			}
-			if (char1.compareTo(char2) < 0) {
-				arg3.concat(char1.toString());
-			}
-			
-			
-			
-			
 		}
-		
+		System.out.println("Maximum consecutive substring is " + longestSubstring);
 	}
 }
