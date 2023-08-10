@@ -20,6 +20,8 @@ public class Ex22_1 {
 		System.out.println("Please enter a String of characters to process: ");
 		initialString = input.next();
 		
+		long time = System.nanoTime();
+
 		for (int i = 1; i < initialString.length(); i++) {
 			lastChar = initialString.charAt(i - 1);
 			currentChar = initialString.charAt(i);
@@ -42,6 +44,8 @@ public class Ex22_1 {
 					currentSubstring = "";
 			}
 		}
+		long deltaTime = System.nanoTime() - time;
 		System.out.println("Maximum consecutive substring is " + longestSubstring);
+		System.out.println("delta time is: " + deltaTime);
 	}
 }
