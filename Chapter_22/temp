@@ -1,24 +1,69 @@
 /* Name: Paul Helske
- * Date: 08/09/2023
+ * Date: 08/15/2023
  */
 import java.util.*;
 
-public class Ex22_3 {
+public class Ex23_3 {
+	public static void main (String[] args) {
 
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
+		int[] numbers = new int[10];
+		System.out.println("Before: ");
+		for (int i = 0; i < numbers.length; i++) {
+			numbers[i] = (int) (Math.random() * 1000);
+		}
+		printArray(numbers);
+
+		quicksort(numbers);
 		
-		String string1 = "";
-		String string2 = "";
+		System.out.println("\nAfter: ");
+		printArray(numbers);
+
+	}
+	
+	public static void quicksort (int[] array) {
+		quicksort(array, 0, array.length - 1);
+	}
+	public static void quicksort (int[] array, int lowIndex, int highIndex) {
 		
-		System.out.println("Enter a string to test against: ");
-		string1 = input.nextLine();
-		System.out.println("Enter a string to test with: ");
-		string2 = input.nextLine();
+		if(lowIndex >= highIndex)
+			return;
 		
-		for (int i = 0; i < string1.length(); i++) {
+		int pivot = array[highIndex];
+		int leftPointer = lowIndex;
+		int rightPointer = highIndex;
+		
+		System.out.print(" Left Pointer: " + leftPointer);
+		System.out.print(" Right Pointer: " + rightPointer);
+		System.out.println("\nDuring: ");
+		printArray(array);
+		
+		while (leftPointer < rightPointer) {
+			
+			while (array[leftPointer] <= pivot && leftPointer < rightPointer) {
+				leftPointer++;
+			}
+			while(array[rightPointer] >= pivot && leftPointer < rightPointer) {
+				rightPointer--;
+			}
+			swap(array, leftPointer, rightPointer);
 			
 		}
+		swap(array, leftPointer, highIndex);		// pivot?
+		
+		quicksort(array, lowIndex, leftPointer - 1);
+		quicksort(array, leftPointer + 1, highIndex);
+		
+	}
+
+	public static void printArray(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + " ");
+		}
+	}
+	public static void swap(int [] array, int index1, int index2) {
+		int temp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = temp;
 	}
 
 }
