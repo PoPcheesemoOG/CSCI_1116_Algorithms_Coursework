@@ -1,8 +1,6 @@
 /*
-Author: 
-Date: 
-
-Description: 
+Author: Paul Helske
+Date: 08/16/2023 
  */
 import java.util.Comparator;
 
@@ -69,18 +67,21 @@ public class Exercise23_03 {
 
 			while (comparator.compare(list[lowIndex], pivot) < 0 && leftPointer < rightPointer) {
 				leftPointer++;
+				System.out.print("Left Pointer: " + leftPointer + "\n");
+				System.out.print("Right Pointer: " + rightPointer + "\n");
 			}
 			while(comparator.compare(list[highIndex], pivot) >= 0 && leftPointer < rightPointer) {
 				rightPointer--;
+				System.out.print("Left Pointer: " + leftPointer + "\n");
+				System.out.print("Right Pointer: " + rightPointer + "\n");
 			}
-	//		swap(list, leftPointer, rightPointer);
-			if (leftPointer >= rightPointer) {
-				E temp = list[leftPointer];
-				list[leftPointer] = list[rightPointer];
-				list[rightPointer] = temp;
-			}
+			swap(list, leftPointer, rightPointer);
+		
 		}
 		swap(list, leftPointer, highIndex);
+		for (int i = 0; i < list.length; i++) {
+			System.out.print(list[i] + " ");
+		}
 
 		quickSort(list, lowIndex, leftPointer - 1, comparator);
 		quickSort(list, leftPointer + 1, highIndex, comparator);
