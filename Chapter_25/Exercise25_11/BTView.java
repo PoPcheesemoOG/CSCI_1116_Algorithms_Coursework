@@ -11,7 +11,7 @@ public class BTView extends Pane {
 
     private BST<Integer> tree = new BST<>();
     private double radius = 15; // Tree node radius
-    private double vGap = 35; // Gap between two levels in a tree
+    private double vGap = 50; // Gap between two levels in a tree
 
     BTView(BST<Integer> tree) {
         this.tree = tree;
@@ -26,15 +26,14 @@ public class BTView extends Pane {
         this.getChildren().clear(); // Clear the pane
         if (tree.getRoot() != null) {
             // Display tree recursively
-            displayTree(tree.getRoot(), getHeight() / 2, vGap, getHeight() / 4);
+            displayTree(tree.getRoot(), getHeight() / 4, getHeight() / 2, getHeight() / 4);
         }
     }
 
     /**
      * Display a subtree rooted at position (x, y)
      */
-    private void displayTree(BST.TreeNode<Integer> root,
-            double x, double y, double hGap) {
+    private void displayTree(BST.TreeNode<Integer> root, double x, double y, double hGap) {
         if (root.left != null) {
             // Draw a line to the left node
             getChildren().add(new Line(x + hGap, y + vGap, x, y));

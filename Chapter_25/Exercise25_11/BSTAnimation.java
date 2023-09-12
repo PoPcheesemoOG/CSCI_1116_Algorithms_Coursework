@@ -53,7 +53,7 @@ public class BSTAnimation extends Application {
         });
 
         // Create a scene and place the pane in the stage
-        Scene scene = new Scene(pane, 450, 250);
+        Scene scene = new Scene(pane, 750, 350);
         primaryStage.setTitle("BSTAnimation"); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.show(); // Display the stage
